@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .
+    command: npm run start
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    depends_on:
+      - json-server
+  json-server:
+    image: ghcr.io/typicode/json-server
+    command: ["--watch", "/data/db.json", "--port", "3000"]
+    volumes:
+      - ./db.json:/data/db.json:ro
+    ports:
+      - '3000:3000'

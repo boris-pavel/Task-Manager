@@ -1,0 +1,35 @@
+<section class="task-column">
+  <header class="task-column__header">
+    <h3>{{ title }}</h3>
+    <mat-chip color="primary" selected>{{ tasks.length }}</mat-chip>
+  </header>
+  <div class="task-column__content" *ngIf="tasks.length; else emptyState">
+    <mat-card *ngFor="let task of tasks; trackBy: trackByTask" class="task-card">
+      <mat-card-title>{{ task.title }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ task.description }}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <mat-form-field appearance="fill" class="status-select">
+          <mat-label>Status</mat-label>
+          <mat-select [value]="task.status" (selectionChange)="onStatusChange(task, $event.value)">
+            <mat-option *ngFor="let option of statusOptions" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="editTask.emit(task)">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+        <button mat-button color="warn" (click)="deleteTask.emit(task)">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <ng-template #emptyState>
+    <p class="task-column__empty">No tasks yet.</p>
+  </ng-template>
+</section>

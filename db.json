@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Plan product roadmap",
+      "description": "Draft priorities for the upcoming quarter.",
+      "status": "todo"
+    },
+    {
+      "id": 2,
+      "title": "Design login flow",
+      "description": "Collaborate with UX to finalize the login experience.",
+      "status": "inProgress"
+    },
+    {
+      "id": 3,
+      "title": "Deploy analytics",
+      "description": "Verify tracking events after deployment.",
+      "status": "done"
+    }
+  ]
+}

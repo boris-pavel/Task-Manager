@@ -1,0 +1,21 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

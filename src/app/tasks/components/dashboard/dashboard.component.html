@@ -1,0 +1,43 @@
+<app-toolbar></app-toolbar>
+<div class="dashboard">
+  <mat-card class="dashboard__search">
+    <mat-form-field appearance="outline">
+      <mat-label>Search tasks</mat-label>
+      <input matInput [formControl]="searchControl" placeholder="Filter by title or description" />
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        aria-label="Clear search"
+        *ngIf="searchControl.value"
+        (click)="resetSearch()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card>
+
+  <div class="dashboard__content">
+    <div class="dashboard__form">
+      <app-task-form
+        [task]="selectedTask"
+        [statusOptions]="statusOptions"
+        (save)="onSave($event)"
+        (cancel)="clearSelection()"
+      ></app-task-form>
+    </div>
+
+    <div class="dashboard__board" *ngIf="board$ | async as board">
+      <app-task-column
+        *ngFor="let column of columns; trackBy: trackColumns"
+        [title]="column.label"
+        [status]="column.status"
+        [tasks]="board[column.status]"
+        [statusOptions]="statusOptions"
+        (editTask)="onEdit($event)"
+        (deleteTask)="onDelete($event)"
+        (statusChange)="onStatusChange($event)"
+      ></app-task-column>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+.task-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 280px;
+}
+
+.task-column__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-column__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.status-select {
+  min-width: 160px;
+}
+
+.task-column__empty {
+  color: rgba(0, 0, 0, 0.54);
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+:host-context(.dark-theme) .task-column__empty {
+  color: rgba(255, 255, 255, 0.7);
+}

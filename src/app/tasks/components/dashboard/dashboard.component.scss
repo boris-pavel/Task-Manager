@@ -1,0 +1,38 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.dashboard__search {
+  max-width: 480px;
+}
+
+.dashboard__content {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(320px, 360px) 1fr;
+}
+
+.dashboard__board {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.dashboard__board app-task-column {
+  flex: 1 1 0;
+}
+
+@media (max-width: 1024px) {
+  .dashboard__content {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__board {
+    flex-direction: column;
+  }
+}

@@ -1,134 +1,123 @@
-# 📋 Task Manager App
+# 📋 Task Manager
 
-A simple **Kanban-style Task Manager** built with **Angular, TypeScript, RxJS, Angular Material, and JSON Server**.
-The app allows users to authenticate, create, edit, delete, and manage tasks across different statuses (`To Do`, `In Progress`, `Done`).
-
-This project demonstrates:
-
-* Angular (components, services, routing, reactive forms)
-* TypeScript (strict typing, interfaces, clean code)
-* RxJS (observables, subjects, operators like `map`, `filter`, `debounceTime`)
-* REST API integration (GET/POST/PUT/DELETE with HttpClient)
-* Angular Material UI & responsive design (Flexbox/Grid)
-* Global HTTP Interceptors for error handling and auth token
-* Docker & Docker Compose for containerized front-end + backend mock
+A Kanban-style task manager built with **Angular 17**, **Angular Material**, and **JSON Server**. The application demonstrates
+modular architecture (auth, tasks, shared), strict TypeScript usage, global HTTP interceptors, and reactive forms enhanced by
+RxJS operators (`debounceTime`, `filter`, `map`). Users can authenticate (mock JWT), create/edit/delete tasks, search across
+tasks, and switch between light and dark themes.
 
 ---
 
 ## 🚀 Features
 
-✅ Login page with mock JWT authentication
-✅ Dashboard with tasks organized in a Kanban board
-✅ Add, edit, and delete tasks using Reactive Forms
-✅ Search & filter tasks with RxJS operators
-✅ Dark Mode toggle (Angular Material theme switch)
-✅ REST API powered by JSON Server
-✅ Clean modular architecture (auth, tasks, shared)
-✅ Docker Compose setup for easy deployment
+- **Authentication** – Reactive login form with validation and mock JWT storage.
+- **Dashboard** – Tasks rendered in To Do, In Progress, and Done columns with quick status updates.
+- **Task management** – Create, edit, and remove tasks with Material dialogs and global snackbar feedback.
+- **Search & filter** – Instant filtering powered by RxJS operators (`debounceTime`, `filter`, `map`).
+- **REST integration** – `HttpClient` CRUD operations against a JSON Server backend.
+- **Global interceptor** – Automatically attaches tokens and surfaces HTTP errors.
+- **Dark mode** – Angular Material theme toggle persisted in localStorage.
+- **Docker-ready** – Compose file spins up Angular dev server and JSON Server together.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Front-end:** Angular 17+, TypeScript, RxJS, Angular Material
-* **Backend (mock):** JSON Server
-* **Containerization:** Docker & Docker Compose
+- **Front-end:** Angular 17+, TypeScript (strict mode), RxJS, Angular Material
+- **Mock backend:** JSON Server (`db.json`)
+- **Tooling:** Angular CLI, Docker & Docker Compose
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```
-task-manager/
-│── src/app/
-│   ├── auth/          # Login, authentication service
-│   ├── tasks/         # Task components, services, models
-│   ├── shared/        # Shared modules, interceptors
-│   └── app.module.ts
-│
-│── db.json            # Mock backend data
-│── docker-compose.yml # Container setup
-│── README.md          # Project documentation
+src/
+├── app/
+│   ├── auth/            # Auth module, guard, login component
+│   ├── shared/          # Shared module, material module, toolbar, dark mode service, interceptors, models
+│   └── tasks/           # Task module, dashboard, task form & columns, task service
+├── environments/        # Environment configuration (dev/prod)
+└── assets/
 ```
+
+Additional files:
+
+- `db.json` – Seed data for JSON Server
+- `docker-compose.yml` / `Dockerfile` – Containerised dev environment
 
 ---
 
-## ⚡ Installation & Setup
+## ⚙️ Local Development
 
-### 1. Clone the repository
+1. **Install dependencies**
 
-```bash
-git clone https://github.com/yourusername/task-manager.git
-cd task-manager
-```
+   ```bash
+   npm install
+   ```
 
-### 2. Install dependencies
+2. **Start the mock API (port 3000)**
 
-```bash
-npm install
-```
+   ```bash
+   npm run json-server
+   ```
 
-### 3. Run the Angular app
+3. **Run the Angular app (port 4200)**
 
-```bash
-ng serve
-```
+   ```bash
+   npm run start:app
+   ```
 
-👉 The app will be available at `http://localhost:4200/`
+4. Visit `http://localhost:4200` – the app will proxy requests to `http://localhost:3000/tasks`.
 
-### 4. Run the mock backend
-
-```bash
-npx json-server --watch db.json --port 3000
-```
-
-👉 The REST API will be available at `http://localhost:3000/tasks`
+Default credentials are not required: any valid email/password combination will produce a mock token.
 
 ---
 
-## 🐳 Run with Docker
+## 🐳 Docker Compose
 
-Make sure you have **Docker** and **Docker Compose** installed.
+Ensure Docker and Docker Compose are installed, then run:
 
 ```bash
 docker-compose up --build
 ```
 
-This will start:
+Services started:
 
-* Angular app → `http://localhost:4200/`
-* JSON Server → `http://localhost:3000/`
+- **frontend** → Angular dev server on `http://localhost:4200`
+- **json-server** → REST API on `http://localhost:3000`
 
----
-
-## 🔑 Example API Routes
-
-* `GET /tasks` → Get all tasks
-* `POST /tasks` → Add a new task
-* `PUT /tasks/:id` → Update a task
-* `DELETE /tasks/:id` → Delete a task
+Stop the stack with `Ctrl+C` and remove containers using `docker-compose down`.
 
 ---
 
-## 🎯 Future Improvements
+## 🔗 Useful Commands
 
-* Real authentication with JWT + Node.js backend
-* Drag & drop for Kanban tasks
-* User-specific task management
-* Unit & E2E testing with Jasmine/Karma
-
----
-
-## 👤 Author
-
-Built by **\[Boris-Andrei Pavel]**
-
-* GitHub: [boris-pavel](https://github.com/boris-pavel)
-* LinkedIn: [Boris-Andrei Pavel](https://www.linkedin.com/in/boris-pavel/)
+| Command | Description |
+| ------- | ----------- |
+| `npm run start` | Serve Angular app on all interfaces (used in Docker) |
+| `npm run start:app` | Serve Angular locally (`http://localhost:4200`) |
+| `npm run json-server` | Run JSON Server with `db.json` |
+| `npm run build` | Production build |
 
 ---
 
-🔥 This project was created as a **portfolio showcase** to demonstrate modern Angular development practices, REST API integration, and clean architecture.
+## 📬 API Endpoints
+
+All endpoints are served by JSON Server on `http://localhost:3000`:
+
+- `GET /tasks` – List tasks
+- `POST /tasks` – Create task
+- `PUT /tasks/:id` – Update task
+- `DELETE /tasks/:id` – Remove task
 
 ---
 
+## 🧭 Next Steps (Ideas)
+
+- Add drag & drop for Kanban columns
+- Replace mock auth with a real backend
+- Extend unit/e2e test coverage
+
+---
+
+Happy tasking! 🧑‍💻
