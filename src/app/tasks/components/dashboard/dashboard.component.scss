@@ -7,6 +7,23 @@
 
 .dashboard__search {
   max-width: 480px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .mat-mdc-form-field-icon-suffix {
+    display: flex;
+    align-items: center;
+    padding-right: 0.5rem;
+  }
+
+  button[mat-icon-button][matSuffix] {
+    --mdc-icon-button-size: 32px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+  }
 }
 
 .dashboard__content {
